@@ -9,12 +9,13 @@ import model.entities.Seller;
 import java.io.PrintStream;
 import java.util.Date;
 import java.util.List;
+import java.util.Scanner;
 
 
 public class Program {
     public static void main(String[] args) {
         SellerDao sellerDao = DaoFactory.createSellerDao();
-
+        Scanner sc = new Scanner(System.in);
         Seller seller = sellerDao.findById(3);
         System.out.println("=== TEST 1:  seller findById ===");
         System.out.println(seller);
@@ -42,7 +43,17 @@ public class Program {
         seller.setName("Marthin luther king");
         sellerDao.update(seller);
         System.out.println("Update Completed");
+
+        System.out.println("=== TEST 6:  seller delete ===");
+        System.out.print("\nInsira o id que deseja deletar: ");
+        int id = sc.nextInt();
+        sellerDao.deleteById(id);
+        System.out.println("Delete completed");
+
+        sc.close();
         }
+
+
 
     }
 
